@@ -1,8 +1,5 @@
-import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native'
-import LottieView from 'lottie-react-native'
-import useFetchWeather from './hooks/useFetchWeather'
-import { useEffect, useRef, useState } from 'react'
+import { StyleSheet, SafeAreaView } from 'react-native'
+import React from 'react'
 import Home from './pages/home'
 
 export default function App() {
