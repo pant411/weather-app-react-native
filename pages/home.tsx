@@ -2,23 +2,53 @@ import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View } from 'react-native'
 import LottieView from 'lottie-react-native'
 import useFetchWeather from '../hooks/useFetchWeather'
+import * as Location from 'expo-location';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
-  const { data } = useFetchWeather({ lat: 14.33, lon: 100.61 })
+  const [location, setLocation] = useState<any>(null);
+  const [errorMsg, setErrorMsg] = useState<any>(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+          setErrorMsg('Permission to access location was denied');
+          return;
+        }
+
+        let location = await Location.getCurrentPositionAsync({});
+        setLocation(location);
+      } catch (error) {
+        console.error('Error getting location:', error);
+        setErrorMsg('Error getting location');
+      }
+    })();
+  }, []);
+
+  const { data, loading } = useFetchWeather({ lat: location?.coords?.latitude, lon: location?.coords?.longitude });
 
   return (
     <View style={styles.container}>
-      <Text style={styles.cityText}>{data?.city || ''}</Text>
-      <LottieView
-        source={require('../assets/lottie/sunny.json')}
-        style={{ width: '60%', height: '60%' }}
-        autoPlay
-        loop
-      />
-      <Text style={styles.temperatureText}>
-        {`${data?.temperature.toFixed(0)}°C` || ''}
-      </Text>
-      <Text style={styles.conditionText}>{data?.condition || ''}</Text>
+      {
+        loading ? <Text>loading</Text> : (
+          <>
+            <Text style={styles.cityText}>{data?.city || ''}</Text>
+            <LottieView
+              source={require('../assets/lottie/sunny.json')}
+              style={{ width: '60%', height: '60%' }}
+              autoPlay
+              loop
+            />
+            <Text style={styles.temperatureText}>
+              {`${data?.temperature.toFixed(0)}°C` || ''}
+            </Text>
+            <Text style={styles.conditionText}>{data?.condition || ''}</Text>
+          </>
+        )
+      }
+
       <StatusBar style="auto" />
     </View>
   )

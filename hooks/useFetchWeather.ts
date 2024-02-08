@@ -30,13 +30,11 @@ const useFetchWeather = ({
           lat,
           lon,
         )
-        setData(
-          new Weather(
-            currentWeather.name,
-            currentWeather.main.temp,
-            currentWeather.weather[0].main,
-          ),
-        )
+        setData({
+          city: currentWeather.name,
+          temperature: currentWeather.main.temp,
+          condition: currentWeather.weather[0].main,
+        })
       } catch (error) {
         setError(error)
       } finally {
@@ -47,7 +45,7 @@ const useFetchWeather = ({
     fetchData()
   }, [])
 
-  return { data, error, loading }
+  return { data: data, error, loading }
 }
 
 export default useFetchWeather

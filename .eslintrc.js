@@ -1,39 +1,7 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        es6: true,
-        node: true,
-        'react-native/react-native': true
-    },
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:react/recommended"
+    root: true,
+    extends: [
+      'universe/native',
     ],
-    "overrides": [
-        {
-            "env": {
-                "node": true
-            },
-            "files": [
-                ".eslintrc.{js,cjs}"
-            ],
-            "parserOptions": {
-                "sourceType": "script"
-            }
-        }
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "@typescript-eslint",
-        "react",
-        'react-native',
-    ],
-    "rules": {
-    }
-}
+  };
+  
