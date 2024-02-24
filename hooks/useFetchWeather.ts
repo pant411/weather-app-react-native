@@ -35,6 +35,7 @@ const useFetchWeather = ({
           temperature: currentWeather.main.temp,
           condition: currentWeather.weather[0].main,
         })
+        setLoading(false)
       } catch (error) {
         setError(error)
       } finally {
@@ -43,7 +44,7 @@ const useFetchWeather = ({
     }
 
     fetchData()
-  }, [])
+  }, [lat, lon])
 
   return { data: data, error, loading }
 }

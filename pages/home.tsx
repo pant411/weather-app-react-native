@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <View style={styles.container}>
       {
-        loading ? <Text>loading</Text> : (
+        (!location || loading) ? <Text>loading</Text> : (
           <>
             <Text style={styles.cityText}>{data?.city || ''}</Text>
             <LottieView
