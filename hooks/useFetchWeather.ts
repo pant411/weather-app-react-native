@@ -30,7 +30,9 @@ const useFetchWeather = ({
           lat,
           lon,
         )
+        // console.log(currentWeather);
         setData({
+          main: currentWeather.weather[0].main,
           city: currentWeather.name,
           temperature: currentWeather.main.temp,
           condition: currentWeather.weather[0].main,
