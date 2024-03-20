@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import LottieView from 'lottie-react-native'
 import useFetchWeather from '../hooks/useFetchWeather'
 import * as Location from 'expo-location';
@@ -54,30 +54,36 @@ export default function Home() {
 
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.cityText}>{data.city}</Text>
-      {data?.main && <LottieView
-        source={weatherAnimations[data.main]}
-        style={{ width: '60%', height: '60%' }}
-        autoPlay
-        loop
-      />}
-      <Text style={styles.temperatureText}>
-        {`${data.temperature.toFixed(0)}°C`}
-      </Text>
-      <Text style={styles.conditionText}>{data.condition}</Text>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.innerContainer}>
+        <Text style={styles.cityText}>{data.city}</Text>
+        {data?.main && <LottieView
+          source={weatherAnimations[data.main]}
+          style={{ width: '60%', height: '60%' }}
+          autoPlay
+          loop
+        />}
+        <Text style={styles.temperatureText}>
+          {`${data.temperature.toFixed(0)}°C`}
+        </Text>
+        <Text style={styles.conditionText}>{data.condition}</Text>
 
-      <StatusBar style="auto" />
-    </View>
+        <StatusBar style="auto" />        
+      </View>
+    </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#fff',
+    backgroundColor: '#fff',
+  },
+  innerContainer: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'space-evenly',
+    padding: 20,
   },
   cityText: {
     fontSize: 36,
