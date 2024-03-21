@@ -1,4 +1,4 @@
-# Weather App README
+# The Weather App
 
   The Weather App is a React Native application designed to display the current weather of a city. It retrieves weather data from the OpenWeather free API.
 
