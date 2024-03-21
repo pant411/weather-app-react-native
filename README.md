@@ -2,6 +2,10 @@
 
   The Weather App is a React Native application designed to display the current weather of a city. It retrieves weather data from the OpenWeather free API.
 
+  <div style="margin:0 auto;">
+    <img src="https://github.com/pant411/weather-app-react-native/blob/main/assets/Screenshot%202567-03-21%20at%2013.47.26.png?raw=true" alt="Image Description">
+  </div>
+
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
